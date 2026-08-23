@@ -41,19 +41,26 @@ mentor pack                           # 生成兼容 skill 目录
 
 ## 🧩 用 MCP 接入 IDE（按需加载）
 
-完整步骤见 [mcp/README.md](../mcp/README.md)。**没有 npmjs 包。**
+`mentor-mcp` 已发布到 npm：**[npmjs.com/package/mentor-mcp](https://www.npmjs.com/package/mentor-mcp)**。完整步骤见 [mcp/README.md](../mcp/README.md)。
 
-- **推荐：** 从 [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) 下载 `guapimm-mentor-mcp-*.tgz`（自带编译结果，不用 `tsc`），配置见 [mcp/examples/mcp.release.json](../mcp/examples/mcp.release.json)。
-- **源码：** clone 后本地构建：
+- **推荐（npm）：** 无需下载，直接运行：
+
+```bash
+npx mentor-mcp
+# 或全局安装：npm install -g mentor-mcp
+```
+
+- **Release 离线包：** 从 [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) 下载 `guapimm-mentor-mcp-*.tgz`（自带编译结果，不用 `tsc`）。
+- **源码（开发者）：** clone 后本地构建：
 
 ```bash
 git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
 cd AI-Model-Development-Mentor/mcp
-npm install          # 仅装本仓库依赖，不是往 npm 发包
+npm install
 npm run build
 ```
 
-把 [mcp/examples/mcp.json](../mcp/examples/mcp.json) 的占位路径改成绝对路径。对话里先 `session_start`。
+把 [mcp/examples/mcp.json](../mcp/examples/mcp.json) 的命令改成 `npx mentor-mcp`（源码方式则把占位路径改成绝对路径）。对话里先 `session_start`。
 
 ## 使用规则
 
@@ -65,7 +72,7 @@ npm run build
 
 ## 注意事项
 
-- **安装路径：** GitHub Releases 的 `mentor` 二进制（只要提示词，不用 Node）；Release 里的 `guapimm-mentor-mcp-*.tgz`（IDE MCP，需要 Node ≥ 18，不用自己 `tsc`）；或 clone 后编译 `mcp/`。没有 npmjs 上的 `npx @guapimm/mentor-mcp`。
+- **安装路径：** GitHub Releases 的 `mentor` 二进制（只要提示词，不用 Node）；npm 包 `mentor-mcp`（`npx mentor-mcp`，需要 Node ≥ 18）；或 clone 后编译 `mcp/`。离线 `.tgz` 在 GitHub Releases。
 - **MCP 配置必须写绝对路径**，改完要重载。Windows 可用 `E:/path/to/repo`。
 - **沙箱是路径监狱，不是虚拟机。** 默认只限制在项目目录内，并禁止写 `.env` / `.git`；Docker 仅可选用于 `run_command`。
 - **只有 MCP 需要 Node ≥ 18。** 纯提示词用户可以忽略 `mcp/`。

@@ -4,17 +4,27 @@
 >
 > **本服务不跑 LLM。** IDE 才是 Agent；mentor-mcp 负责选片、闸门和路径监狱。
 >
-> **未发布到 npmjs。** `"private": true`，没有 `npx @guapimm/mentor-mcp`。正式用法是从 **GitHub Release** 下载自包含 `.tgz`（内含 `dist` + 提示词，不用自己 `tsc`）。开发者仍可 clone 后本地构建。
+> **已发布到 npm：[`mentor-mcp`](https://www.npmjs.com/package/mentor-mcp)。** 推荐直接 `npx mentor-mcp` 运行，无需下载。离线 `.tgz`（内含 `dist` + 提示词，不用自己 `tsc`）仍在 **GitHub Release** 提供。开发者可 clone 后本地构建。
 
 ## 使用教程（IDE）
 
 ### 0. 前置
 
 - Node.js ≥ 18（只要 MCP 这条路径；纯提示词用户不需要）
-- **推荐：** 从 [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) 下载 `guapimm-mentor-mcp-*.tgz`
+- **推荐：** npm 直接运行（见下）
+- **或者** 从 [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) 下载 `guapimm-mentor-mcp-*.tgz`
 - **或者** clone 本仓库后在 `mcp/` 里本地编译
 
-### 1a. 用 Release 包（不用自己 build）
+### 1a. 用 npm 包（推荐）
+
+```bash
+npx mentor-mcp
+# 或全局安装后直接用命令：npm install -g mentor-mcp
+```
+
+IDE 配置把 `command` 设为 `npx`、`args` 设为 `["mentor-mcp"]` 即可，无需路径（见 [examples/mcp.npm.json](./examples/mcp.npm.json)）。
+
+### 1b. 用 Release 包（离线、不用自己 build）
 
 ```bash
 # 下载 Release 里的 guapimm-mentor-mcp-0.1.0.tgz 后：
@@ -23,7 +33,7 @@ npx -y file:./guapimm-mentor-mcp-0.1.0.tgz
 
 IDE 配置见 `examples/mcp.release.json`（把路径改成 tgz 的绝对路径）。
 
-### 1b. 从源码构建
+### 1c. 从源码构建
 
 ```bash
 git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
@@ -54,8 +64,8 @@ node scripts/verify-stdio.mjs
 {
   "mcpServers": {
     "mentor": {
-      "command": "node",
-      "args": ["/absolute/path/to/AI-Model-Development-Mentor/mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["mentor-mcp"],
       "env": {
         "MENTOR_PROMPTS_DIR": "/absolute/path/to/AI-Model-Development-Mentor"
       }
@@ -63,6 +73,8 @@ node scripts/verify-stdio.mjs
   }
 }
 ```
+
+> 源码方式则把 `command` 改为 `node`、`args` 改为 `["/absolute/path/to/AI-Model-Development-Mentor/mcp/dist/index.js"]`。
 
 改完后重启 MCP / 重载窗口，确认列表里出现 `mentor` 以及 `session_start` 等工具。
 
@@ -122,7 +134,7 @@ Resources：`mentor://prompts/{lang}/{module}`（全文，调试用）以及 `me
 
 ## 注意事项
 
-- **没有 npmjs 包。** 不要 `npm install -g @guapimm/mentor-mcp`。用户从 GitHub Release 下 `.tgz`；开发者 `git pull` 后重新 `npm install && npm run build`。
+- **npm 包：** [`mentor-mcp`](https://www.npmjs.com/package/mentor-mcp)，`npx mentor-mcp` 即可运行。离线 `.tgz` 在 GitHub Release；开发者 `git pull` 后重新 `npm install && npm run build`。
 - **Docker（可选）：** 在已 `sync` + `build` 的 `mcp/` 目录执行 `docker build -t mentor-mcp .`，然后 `docker run -i --rm mentor-mcp`（stdio）。镜像默认不推仓库。
 - **配置必须用绝对路径。** 相对路径在 IDE 里经常解析失败。改完配置需重载 MCP。
 - **沙箱是路径监狱，不是虚拟机。** 默认只锁工作区目录、禁 `.env` / `.git`、限制危险命令。Docker 是可选的 `run_command` 后端。

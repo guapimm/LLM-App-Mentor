@@ -51,6 +51,29 @@ mentor pack                           # 互換性のある skill ディレクト
 
 > 対応コマンド：`install` / `add` / `remove` / `list` / `detect` / `pack`；モジュール：agent（デフォルト）/ security / style / workflow / complete；ツール：opencode / claude-code / codex / cursor / other。
 
+## 🧩 MCP で IDE に接続（オンデマンド読み込み）
+
+`mentor-mcp` は npm で公開されています：**[npmjs.com/package/mentor-mcp](https://www.npmjs.com/package/mentor-mcp)**。詳細な手順は [mcp/README.md](../mcp/README.md) を参照してください。
+
+- **推奨（npm）：** ダウンロード不要、そのまま実行：
+
+```bash
+npx mentor-mcp
+# またはグローバルインストール：npm install -g mentor-mcp
+```
+
+- **オフライン Release：** [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) から `guapimm-mentor-mcp-*.tgz` をダウンロード（ビルド済み、`tsc` 不要）。
+- **ソースから（開発者向け）：**
+
+```bash
+git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
+cd AI-Model-Development-Mentor/mcp
+npm install
+npm run build
+```
+
+MCP 設定ではコマンドを `npx mentor-mcp` にします（ソースビルドの場合は `mcp/dist/index.js` への絶対パス）。最初のツール呼び出しは `session_start`。
+
 ## 📖 使い方ガイド（opencode）
 
 ### コマンド速覧

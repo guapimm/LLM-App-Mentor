@@ -57,26 +57,33 @@ The prompt content is **tool-agnostic** — every tool only differs in *how* it 
 | Aider | `CONVENTIONS.md` | project root | auto |
 | Windsurf | `.windsurfrules` | project root | auto |
 | GitHub Copilot Agent | `AGENTS.md` | project root | auto |
-| **Any MCP client** | via `mentor-mcp` | stdio (`node mcp/dist/index.js`) | auto (resources + tools) |
+| **Any MCP client** | via `mentor-mcp` | stdio (`npx mentor-mcp`) | auto (resources + tools) |
 
 > 💡 **One-click install:** the `mentor` CLI writes files to the correct name/location for any of these tools automatically (see `cli/`).
 
 ## 🧩 MCP Server (IDE)
 
-`mcp/` is an **on-demand policy + sandbox** MCP server. The IDE is the coding agent; this process does **not** run an LLM and is **not on npmjs**.
+`mcp/` is an **on-demand policy + sandbox** MCP server, published on npm as **[`mentor-mcp`](https://www.npmjs.com/package/mentor-mcp)**. The IDE is the coding agent; this process does **not** run an LLM.
 
-**Users:** download `guapimm-mentor-mcp-*.tgz` from [GitHub Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) (self-contained; no `tsc`). Config: [mcp/examples/mcp.release.json](./mcp/examples/mcp.release.json).
+**Users (npm — recommended):**
 
-**From source:**
+```bash
+npx mentor-mcp          # run directly
+# or: npm install -g mentor-mcp
+```
+
+Config example: [mcp/examples/mcp.npm.json](./mcp/examples/mcp.npm.json) (`npx mentor-mcp`). First tool call: `session_start`.
+
+**From source (developers):**
 
 ```bash
 git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
 cd AI-Model-Development-Mentor/mcp
-npm install          # local deps only — not a registry publish
+npm install          # local deps only
 npm run build
 ```
 
-Copy [mcp/examples/mcp.json](./mcp/examples/mcp.json), replace the placeholder with **your absolute path**. First tool call: `session_start`. Full tutorial: [mcp/README.md](./mcp/README.md).
+Point your MCP client at `node <absolute path>/mcp/dist/index.js`. Self-contained `.tgz` files (`guapimm-mentor-mcp-*.tgz`) are still attached to [GitHub Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases). Full tutorial: [mcp/README.md](./mcp/README.md).
 
 ## Usage rules
 
@@ -88,7 +95,7 @@ Copy [mcp/examples/mcp.json](./mcp/examples/mcp.json), replace the placeholder w
 
 ## Notes / caveats
 
-- **Install paths:** GitHub Release `mentor` binary (prompts only, no Node); GitHub Release `guapimm-mentor-mcp-*.tgz` (IDE MCP, Node ≥ 18, no local `tsc`); or clone + build `mcp/`. There is no `npx @guapimm/mentor-mcp` on npmjs.
+- **Install paths:** GitHub Release `mentor` binary (prompts only, no Node); npm package `mentor-mcp` (`npx mentor-mcp`, Node ≥ 18); or clone + build `mcp/`. Self-contained `.tgz` files are on GitHub Releases.
 - **MCP config needs absolute paths** and a reload after edits. Windows: `E:/path/to/repo` is fine.
 - **Sandbox is a path jail, not a VM.** It keeps I/O inside the workspace and blocks `.env` / `.git`; Docker is optional for `run_command` only.
 - **Node ≥ 18** is required only for MCP. Prompt-file users can ignore `mcp/`.
@@ -147,7 +154,7 @@ AI_Model_Development_Mentor/
 ├── LICENSE              # Apache-2.0 License
 ├── cli/                 # mentor CLI (Go)
 ├── rust/                # mentor CLI (Rust, zero-dependency mirror)
-├── mcp/                 # mentor-mcp (stdio; GitHub Release .tgz, not npmjs)
+├── mcp/                 # mentor-mcp (stdio; npm package `mentor-mcp` + Release .tgz)
 │   ├── examples/mcp.json
 │   ├── examples/mcp.release.json
 │   └── policy/fragments.json   # on-demand prompt slices
@@ -182,7 +189,7 @@ The workflow builds both implementations — Go binaries (windows/linux/darwin �
 A: No. `AGENTS.md` is the only must-have. Add `security.md` for stronger guardrails, `style.md` for a friendlier conversation experience.
 
 **Q: Is mentor-mcp on npm?**
-A: Not on npmjs. Get `guapimm-mentor-mcp-*.tgz` from GitHub Releases, or clone and build `mcp/`. See [mcp/README.md](./mcp/README.md).
+A: Yes — [`npm install mentor-mcp`](https://www.npmjs.com/package/mentor-mcp) or just `npx mentor-mcp`. Self-contained `.tgz` files are also on GitHub Releases, and developers can clone and build `mcp/`. See [mcp/README.md](./mcp/README.md).
 
 **Q: Does this work with other AI products?**
 A: Yes. The prompt content is tool-agnostic — every tool just loads it differently. See the table above or `COMPATIBILITY.md` for each tool's loading guide.

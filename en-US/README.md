@@ -41,19 +41,26 @@ Following the instructions in [COMPATIBILITY.md](./COMPATIBILITY.md), copy the f
 
 ## 🧩 Connect an IDE via MCP (on-demand prompts)
 
-Full tutorial: [mcp/README.md](../mcp/README.md). **Not on npmjs.**
+`mentor-mcp` is published on npm: **[npmjs.com/package/mentor-mcp](https://www.npmjs.com/package/mentor-mcp)**. Full tutorial: [mcp/README.md](../mcp/README.md).
 
-- **Recommended:** download `guapimm-mentor-mcp-*.tgz` from [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) (self-contained, no `tsc`). Config: [mcp/examples/mcp.release.json](../mcp/examples/mcp.release.json).
-- **From source:**
+- **Recommended (npm):** no download needed — run it directly:
+
+```bash
+npx mentor-mcp
+# or install globally: npm install -g mentor-mcp
+```
+
+- **Offline Release:** download `guapimm-mentor-mcp-*.tgz` from [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) (self-contained, no `tsc`).
+- **From source (developers):**
 
 ```bash
 git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
 cd AI-Model-Development-Mentor/mcp
-npm install          # local deps only, not a registry publish
+npm install
 npm run build
 ```
 
-Copy [mcp/examples/mcp.json](../mcp/examples/mcp.json) and use an **absolute path**. First tool call: `session_start`.
+Point your config at `npx mentor-mcp` (source builds use an **absolute path** to `mcp/dist/index.js`). First tool call: `session_start`.
 
 ## Usage rules
 
@@ -65,7 +72,7 @@ Copy [mcp/examples/mcp.json](../mcp/examples/mcp.json) and use an **absolute pat
 
 ## Notes / caveats
 
-- **Install paths:** GitHub Release `mentor` binary (prompts only, no Node); Release `guapimm-mentor-mcp-*.tgz` (IDE MCP, Node ≥ 18, no local `tsc`); or clone + build `mcp/`. There is no `npx @guapimm/mentor-mcp` on npmjs.
+- **Install paths:** GitHub Release `mentor` binary (prompts only, no Node); npm package `mentor-mcp` (`npx mentor-mcp`, Node ≥ 18); or clone + build `mcp/`. Offline `.tgz` files are on GitHub Releases.
 - **MCP config needs absolute paths** and a reload after edits. Windows: `E:/path/to/repo` is fine.
 - **Sandbox is a path jail, not a VM.** I/O stays in the workspace; `.env` / `.git` writes are blocked. Docker is optional for `run_command` only.
 - **Node ≥ 18** is required only for MCP.

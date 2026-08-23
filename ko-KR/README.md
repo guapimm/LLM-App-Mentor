@@ -51,6 +51,29 @@ mentor pack                           # 호환 가능한 skill 디렉터리 생�
 
 > 지원 명령어: `install` / `add` / `remove` / `list` / `detect` / `pack`; 모듈: agent(기본값) / security / style / workflow / complete; 도구: opencode / claude-code / codex / cursor / other.
 
+## 🧩 MCP로 IDE 연결 (온디맨드 로딩)
+
+`mentor-mcp`는 npm에 게시되어 있습니다: **[npmjs.com/package/mentor-mcp](https://www.npmjs.com/package/mentor-mcp)**. 전체 절차는 [mcp/README.md](../mcp/README.md)를 참고하세요.
+
+- **권장(npm):** 다운로드 없이 바로 실행:
+
+```bash
+npx mentor-mcp
+# 또는 전역 설치: npm install -g mentor-mcp
+```
+
+- **오프라인 Release:** [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases)에서 `guapimm-mentor-mcp-*.tgz` 다운로드(빌드 포함, `tsc` 불필요).
+- **소스에서(개발자):**
+
+```bash
+git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
+cd AI-Model-Development-Mentor/mcp
+npm install
+npm run build
+```
+
+MCP 설정의 명령은 `npx mentor-mcp`로 지정합니다(소스 빌드는 `mcp/dist/index.js`의 절대 경로 사용). 첫 도구 호출은 `session_start`.
+
 ## 📖 사용 가이드（opencode）
 
 ### 명령어 빠른 요약

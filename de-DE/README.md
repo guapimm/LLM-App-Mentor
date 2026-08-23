@@ -60,6 +60,29 @@ Kopiere die Dateien aus `prompts/` gemäß den Anweisungen in [COMPATIBILITY.md]
 
 > Unterstützte Befehle: `install` / `add` / `remove` / `list` / `detect` / `pack`; Module: agent (Standard) / security / style / workflow / complete; Tools: opencode / claude-code / codex / cursor / other.
 
+## 🧩 IDE über MCP verbinden (Prompts bei Bedarf)
+
+`mentor-mcp` ist auf npm veröffentlicht: **[npmjs.com/package/mentor-mcp](https://www.npmjs.com/package/mentor-mcp)**. Vollständige Anleitung: [mcp/README.md](../mcp/README.md).
+
+- **Empfohlen (npm):** kein Download nötig — direkt ausführen:
+
+```bash
+npx mentor-mcp
+# oder global installieren: npm install -g mentor-mcp
+```
+
+- **Offline-Release:** lade `guapimm-mentor-mcp-*.tgz` von [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) herunter (in sich geschlossen, ohne `tsc`).
+- **Aus dem Quellcode (für Entwickler):**
+
+```bash
+git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
+cd AI-Model-Development-Mentor/mcp
+npm install
+npm run build
+```
+
+In der MCP-Konfiguration den Befehl `npx mentor-mcp` verwenden (Quellcode-Builds nutzen einen **absoluten Pfad** zu `mcp/dist/index.js`). Erster Tool-Aufruf: `session_start`.
+
 ## 📖 Anleitung (opencode)
 
 ### Befehlsübersicht

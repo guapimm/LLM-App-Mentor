@@ -60,6 +60,29 @@ mentor pack                           # сгенерировать совмес�
 
 > Поддерживаемые команды: `install` / `add` / `remove` / `list` / `detect` / `pack`; модули: agent (по умолчанию) / security / style / workflow / complete; инструменты: opencode / claude-code / codex / cursor / other.
 
+## 🧩 Подключение IDE через MCP (подсказки по требованию)
+
+Пакет `mentor-mcp` опубликован на npm: **[npmjs.com/package/mentor-mcp](https://www.npmjs.com/package/mentor-mcp)**. Полное руководство: [mcp/README.md](../mcp/README.md).
+
+- **Рекомендуется (npm):** без скачивания — запускайте напрямую:
+
+```bash
+npx mentor-mcp
+# или установите глобально: npm install -g mentor-mcp
+```
+
+- **Офлайн-релиз:** скачайте `guapimm-mentor-mcp-*.tgz` со страницы [Releases](https://github.com/guapimm/AI-Model-Development-Mentor/releases) (самодостаточный, без `tsc`).
+- **Из исходников (для разработчиков):**
+
+```bash
+git clone https://github.com/guapimm/AI-Model-Development-Mentor.git
+cd AI-Model-Development-Mentor/mcp
+npm install
+npm run build
+```
+
+В конфигурации MCP укажите команду `npx mentor-mcp` (сборки из исходников используют **абсолютный путь** к `mcp/dist/index.js`). Первый вызов инструмента: `session_start`.
+
 ## 📖 Руководство по использованию (opencode)
 
 ### Команды (шпаргалка)
