@@ -1,9 +1,26 @@
 {
-  "name": "@guapimm/mentor-mcp",
+  "name": "mentor-mcp",
   "version": "0.1.0",
   "description": "AI Model Mentor MCP server - on-demand policy fragments and sandboxed workspace tools",
-  "private": true,
   "type": "module",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "coding-assistant",
+    "mentor",
+    "sandbox",
+    "prompt-engineering"
+  ],
+  "homepage": "https://github.com/guapimm/AI-Model-Development-Mentor/tree/main/mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guapimm/AI-Model-Development-Mentor.git",
+    "directory": "mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/guapimm/AI-Model-Development-Mentor/issues"
+  },
   "bin": {
     "mentor-mcp": "dist/index.js"
   },
