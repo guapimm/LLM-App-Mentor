@@ -1,4 +1,4 @@
-# AI Model Mentor
+# LLM-App-Mentor
 
 > **Turn your AI coding assistant into a cautious 10-year full-stack mentor — pure prompts, zero dependencies.**
 > Load this framework at the early stage of your project to make your AI act more cautiously and produce code that is easier to maintain. Pure prompt implementation, no dependencies.
